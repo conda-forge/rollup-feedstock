@@ -1,5 +1,5 @@
 {% set name = "rollup" %}
-{% set version = "4.14.3" %}
+{% set version = "4.15.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/rollup/rollup/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: a294d66dede2c138661db8c2f15c4351f9efa21ca8ff6028d4a45be10ecdab6b
+  sha256: b57db13576232206fbdc3c15e595326768797dbb6778729ed6de213a6d537d99
 
 build:
   number: 0
@@ -16,6 +16,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('rust') }}
     - make
@@ -26,7 +27,6 @@ requirements:
     - pnpm-licenses
   run:
     - nodejs
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 test:
   commands:
