@@ -21,7 +21,7 @@ cxx_compiler_version:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 nodejs:
-- '18'
+- '22'
 rust_compiler:
 - rust
 target_platform:
