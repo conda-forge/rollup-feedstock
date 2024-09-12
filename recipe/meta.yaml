@@ -1,5 +1,5 @@
 {% set name = "rollup" %}
-{% set version = "4.21.2" %}
+{% set version = "4.21.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/rollup/rollup/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: aafd028cea2fd6a47e924768412c3e96e7673344a0acb5c123c09eb8c453f418
+  sha256: f3a05d098191459b4a634a5f9a79652e4021b4ab27dc1c02ec54e7f38b77140f
 
 build:
   number: 0
