@@ -1,0 +1,9 @@
+--- a/rollup.config.ts
++++ b/rollup.config.ts
+@@ -25,2 +25,6 @@
+ const onwarn: WarningHandlerWithDefault = warning => {
++    // Ignore warnings about built-in modules
++    if (warning.message && warning.message.includes('preferring built-in module')) {
++        return;
++    }
+ 	console.error(
