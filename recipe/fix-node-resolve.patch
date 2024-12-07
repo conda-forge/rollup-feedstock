@@ -1,0 +1,13 @@
+--- a/rollup.config.ts
++++ b/rollup.config.ts
+@@ -31,7 +31,10 @@
+ const nodePlugins: readonly Plugin[] = [
+     replace(fsEventsReplacement),
+     alias(moduleAliases),
+-    nodeResolve(),
++    nodeResolve({
++        preferBuiltins: false,
++        browser: false
++    }),
+     json(),
+     string({ include: '**/*.md' }),

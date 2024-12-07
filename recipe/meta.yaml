@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/rollup/rollup/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 497db9b2a3182396d01c333f591bf2870c8eb057348ba6cb0f7bfb1f991a106f
+  patches:
+    - fix-node-resolve.patch
 
 build:
   number: 0
