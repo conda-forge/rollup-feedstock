@@ -24,6 +24,7 @@ requirements:
     - {{ compiler('rust') }}
     - make
     - nodejs
+    - sed  # [osx]
   host:
     - nodejs
     - pnpm
