@@ -18,5 +18,7 @@ pnpm import
 pnpm install rollup
 
 pnpm pack
-npm install -g "${PKG_NAME}"-"${PKG_VERSION}".tgz
+# Revert last .xx to -xx in PKG_VERSION
+_PKG_VERSION=$(echo "${PKG_VERSION}" | sed 's/\.\([^.]\+\)$/-\1/')
+npm install -g "${PKG_NAME}"-"${_PKG_VERSION}".tgz
 pnpm licenses list --json | pnpm-licenses generate-disclaimer --json-input --output-file=ThirdPartyLicenses.txt
