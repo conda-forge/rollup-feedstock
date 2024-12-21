@@ -1,9 +1,10 @@
 {% set name = "rollup" %}
 {% set version = "4.30.0-0" %}
+{% set pep_version = version.replace('-', '.') %}
 
 package:
   name: {{ name|lower }}
-  version: {{ version }}
+  version: {{ pep_version }}
 
 source:
   url: https://github.com/rollup/rollup/archive/refs/tags/v{{ version }}.tar.gz
