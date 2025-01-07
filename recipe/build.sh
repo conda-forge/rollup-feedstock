@@ -19,8 +19,6 @@ pnpm install rollup
 
 pnpm pack
 # Revert last .xx to -xx in PKG_VERSION
-ls
-exit 1
 # _PKG_VERSION=$(echo "${PKG_VERSION}" | sed 's/\.\([^.]\+\)$/-\1/')
 _PKG_VERSION=$(echo "${PKG_VERSION}")
 npm install -g "${PKG_NAME}"-"${_PKG_VERSION}".tgz
