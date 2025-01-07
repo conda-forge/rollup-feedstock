@@ -18,8 +18,10 @@ pnpm import
 pnpm install rollup
 
 pnpm pack
-# Revert last .xx to -xx in PKG_VERSION - well, they seem to have changed it again
+# Revert last .xx to -xx in PKG_VERSION
+ls
+exit 1
 # _PKG_VERSION=$(echo "${PKG_VERSION}" | sed 's/\.\([^.]\+\)$/-\1/')
-_PKG_VERSION=$(echo "${PKG_VERSION}"
+_PKG_VERSION=$(echo "${PKG_VERSION}")
 npm install -g "${PKG_NAME}"-"${_PKG_VERSION}".tgz
 pnpm licenses list --json | pnpm-licenses generate-disclaimer --json-input --output-file=ThirdPartyLicenses.txt
