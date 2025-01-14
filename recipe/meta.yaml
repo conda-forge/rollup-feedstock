@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/rollup/rollup/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 1143ba5d8f41fa26e01b80ca02e7b7fb944f65db67a0914016fca59674dc567a
+  sha256: d9ca0541f63a665dd1974a23536b63532636fdd83040b005f9e1f71cc2be294e
   patches:
     - fix-rollup-warnings.patch
 
