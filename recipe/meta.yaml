@@ -1,5 +1,5 @@
 {% set name = "rollup" %}
-{% set version = "4.34.9" %}
+{% set version = "4.35.0" %}
 {% set pep_version = version.replace('-', '.') %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/rollup/rollup/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: d6339337d06174e3da36ec0a52e7fd19e97459efed36dfd5f487e933e2720bbe
+  sha256: 1857706c2dbef7113b46427ac7a6857f4ff1892e3e0f9acb0fb7cabe815e7ed3
   patches:
     - fix-rollup-warnings.patch
 
