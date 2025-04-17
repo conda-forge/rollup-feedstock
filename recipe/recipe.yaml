@@ -1,7 +1,7 @@
 context:
   name: rollup
   version: 4.40.0
-  pep_version: ${{version | replace('-', '.')}}
+  pep_version: ${{ version | replace('-', '.') }}
 
 package:
   name: ${{ name|lower }}
@@ -13,6 +13,7 @@ source:
 
 build:
   number: 0
+  skip: win
 
 requirements:
   build:
@@ -22,6 +23,7 @@ requirements:
     - ${{ compiler('rust') }}
     - make
     - nodejs
+    - cargo-bundle-licenses
     - if: unix
       then: sed
   host:
@@ -49,6 +51,7 @@ about:
   license_file:
     - LICENSE.md
     - ThirdPartyLicenses.txt
+    - THIRDPARTY.yml
   homepage: https://github.com/rollup/rollup
   documentation: https://rollupjs.org/
 

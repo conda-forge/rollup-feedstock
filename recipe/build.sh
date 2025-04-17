@@ -23,3 +23,9 @@ pnpm pack
 _PKG_VERSION=$(echo "${PKG_VERSION}")
 npm install -g "${PKG_NAME}"-"${_PKG_VERSION}".tgz
 pnpm licenses list --json | pnpm-licenses generate-disclaimer --json-input --output-file=ThirdPartyLicenses.txt
+
+pushd rust
+    cargo-bundle-licenses \
+    --format yaml \
+    --output ${SRC_DIR}/THIRDPARTY.yml
+popd
