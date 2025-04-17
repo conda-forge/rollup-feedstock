@@ -1,30 +1,31 @@
-{% set name = "rollup" %}
-{% set version = "4.40.0" %}
-{% set pep_version = version.replace('-', '.') %}
+context:
+  name: rollup
+  version: 4.40.0
+  pep_version: ${{ version | replace('-', '.') }}
 
 package:
-  name: {{ name|lower }}
-  version: {{ pep_version }}
+  name: ${{ name|lower }}
+  version: ${{ pep_version }}
 
 source:
-  url: https://github.com/rollup/rollup/archive/refs/tags/v{{ version }}.tar.gz
+  url: https://github.com/rollup/rollup/archive/refs/tags/v${{ version }}.tar.gz
   sha256: 63f35febf0c3b05be932f7380dc2dc890016700ec0b24cce885a84f45ae89255
-  patches:
-    - fix-rollup-warnings.patch
 
 build:
-  number: 0
-  skip: true  # [win]
+  number: 1
+  skip: win
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ stdlib("c") }}
-    - {{ compiler('cxx') }}
-    - {{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('rust') }}
     - make
     - nodejs
-    - sed  # [osx]
+    - cargo-bundle-licenses
+    - if: unix
+      then: sed
   host:
     - nodejs
     - pnpm
@@ -32,13 +33,12 @@ requirements:
   run:
     - nodejs
 
-test:
-  commands:
-    - rollup --help
+tests:
+  - script:
+      - rollup --help
 
 about:
-  home: https://github.com/rollup/rollup
-  summary: 'Rollup is a module bundler for JavaScript which compiles small pieces of code into something larger and more complex, such as a library or application.'
+  summary: Rollup is a module bundler for JavaScript which compiles small pieces of code into something larger and more complex, such as a library or application.
   description: |
     Rollup is a module bundler for JavaScript which compiles small pieces of code
     into something larger and more complex, such as a library or application.
@@ -51,8 +51,11 @@ about:
   license_file:
     - LICENSE.md
     - ThirdPartyLicenses.txt
-  doc_url: https://rollupjs.org/
+    - THIRDPARTY.yml
+  homepage: https://github.com/rollup/rollup
+  documentation: https://rollupjs.org/
 
 extra:
   recipe-maintainers:
+    - danielnachun
     - MementoRC

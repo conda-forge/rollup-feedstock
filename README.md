@@ -19,7 +19,6 @@ the most useful individual functions from your favorite libraries. Rollup can
 optimize ES modules for faster native loading in modern browsers, or output a legacy
 module format allowing ES module workflows today.
 
-
 Current build status
 ====================
 
@@ -52,6 +51,20 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>linux_aarch64_nodejs20</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=22028&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rollup-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_nodejs20" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_nodejs22</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=22028&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rollup-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_nodejs22" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>osx_64_nodejs20</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=22028&branchName=main">
@@ -63,6 +76,20 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=22028&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rollup-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_nodejs22" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_nodejs20</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=22028&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rollup-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_nodejs20" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_nodejs22</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=22028&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rollup-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_nodejs22" alt="variant">
                 </a>
               </td>
             </tr>
@@ -195,4 +222,5 @@ Feedstock Maintainers
 =====================
 
 * [@MementoRC](https://github.com/MementoRC/)
+* [@danielnachun](https://github.com/danielnachun/)
 
