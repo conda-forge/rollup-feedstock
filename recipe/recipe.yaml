@@ -21,6 +21,7 @@ requirements:
     - ${{ stdlib("c") }}
     - ${{ compiler('cxx') }}
     - ${{ compiler('rust') }}
+    - cmake
     - make
     - nodejs
     - cargo-bundle-licenses
