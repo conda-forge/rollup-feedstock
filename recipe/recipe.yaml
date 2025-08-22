@@ -1,6 +1,6 @@
 context:
   name: rollup
-  version: "4.47.1"
+  version: "4.48.0-0"
   pep_version: ${{ version | replace('-', '.') }}
 
 package:
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/rollup/rollup/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 24b3c62aa1df2d34f3c2cb2d6d21f51f6c8799c77d2b14c0db208b494f8e4017
+  sha256: 0b529be1450082290785f581f990b6cc76a6ca11b59bfb0dd7fd65a8eafbe659
 
 build:
   number: 0
