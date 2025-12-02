@@ -3,7 +3,7 @@
 # Conda-forge recommended build
 set -euxo pipefail
 
-if [[ "${target_platform}" == "osx-arm64" ]]; then
+if [[ "${target_platform}" == "osx-arm64" || "${target_platform}" == "linux-aarch64" ]]; then
     export npm_config_arch="arm64"
 fi
 
