@@ -1,5 +1,5 @@
 context:
-  version: "4.58.0"
+  version: "4.59.0"
 
 package:
   name: rollup
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/rollup/rollup/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 4d042935ccef426d30cb43c368bb5a494dad12413d4822ad24d30d3560c0433b
+  sha256: 3891df7d50bf194c7ec54e8a2d6ac3a52c493c0a640d1496ef18ae8f8e8102ca
 
 build:
   number: 0
