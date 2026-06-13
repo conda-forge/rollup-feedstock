@@ -19,7 +19,7 @@ rm -f patches/@types+rimraf+*.patch
 rm -f patches/@vueuse+core+*.patch
 
 pnpm import
-pnpm install rollup
+pnpm install --ignore-scripts
 
 pnpm pack
 # Revert last .xx to -xx in PKG_VERSION
