@@ -14,6 +14,12 @@ ln -s "${BUILD_PREFIX}"/bin/node "${PREFIX}"/bin/node
 
 export NPM_CONFIG_USERCONFIG=/tmp/nonexistentrc
 
+# ensure Rust wasm32 sysroot is actually installed (not just listed by rustc)
+if [ ! -d "${BUILD_PREFIX}/lib/rustlib/wasm32-unknown-unknown" ]; then
+    echo "wasm32-unknown-unknown sysroot not found in BUILD_PREFIX — add rust-std-wasm32-unknown-unknown to build requirements"
+    exit 1
+fi
+
 # remove stale upstream patch-package patches that no longer match dependencies
 rm -f patches/@types+rimraf+*.patch
 rm -f patches/@vueuse+core+*.patch
@@ -21,7 +27,6 @@ rm -f patches/@vueuse+core+*.patch
 pnpm import
 pnpm install --ignore-scripts --config.bin-links=false
 
-export RUSTFLAGS="${RUSTFLAGS//-Z location-detail=none/}"
 pnpm run build
 
 pnpm pack
