@@ -27,6 +27,9 @@ rm -f patches/@vueuse+core+*.patch
 pnpm import
 pnpm install --ignore-scripts --config.bin-links=false
 
+# allow stable rustc to accept nightly -Z flags
+# (wasm-pack 0.15 hardcodes -Z location-detail=none)
+export RUSTC_BOOTSTRAP=1
 pnpm run build
 
 pnpm pack
