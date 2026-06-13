@@ -19,6 +19,8 @@ rm -f patches/@types+rimraf+*.patch
 rm -f patches/@vueuse+core+*.patch
 
 pnpm import
+# bootstrap files needed by package bin entries before pnpm links them
+pnpm run build
 pnpm install --ignore-scripts
 
 pnpm pack
