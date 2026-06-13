@@ -19,9 +19,8 @@ rm -f patches/@types+rimraf+*.patch
 rm -f patches/@vueuse+core+*.patch
 
 pnpm import
-# bootstrap files needed by package bin entries before pnpm links them
+pnpm install --ignore-scripts --config.bin-links=false
 pnpm run build
-pnpm install --ignore-scripts
 
 pnpm pack
 # Revert last .xx to -xx in PKG_VERSION
