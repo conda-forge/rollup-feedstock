@@ -12,10 +12,11 @@ export npm_config_build_from_source=true
 rm "${PREFIX}"/bin/node
 ln -s "${BUILD_PREFIX}"/bin/node "${PREFIX}"/bin/node
 
-NPM_CONFIG_USERCONFIG=/tmp/nonexistentrc
+export NPM_CONFIG_USERCONFIG=/tmp/nonexistentrc
 
 pnpm import
-pnpm install rollup
+# pnpm install rollup
+pnpm install --ignore-scripts
 
 pnpm pack
 # Revert last .xx to -xx in PKG_VERSION
