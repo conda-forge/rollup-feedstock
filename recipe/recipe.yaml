@@ -19,6 +19,7 @@ requirements:
     - ${{ stdlib("c") }}
     - ${{ compiler('cxx') }}
     - ${{ compiler('rust') }}
+    - rust-std-wasm32-unknown-unknown
     - cmake
     - make
     - nodejs
