@@ -28,8 +28,21 @@ pnpm import
 pnpm install --ignore-scripts --config.bin-links=false
 
 # allow stable rustc to accept nightly -Z flags
-# (wasm-pack 0.15 hardcodes -Z location-detail=none)
+# (rollup's rust/bindings_wasm/.cargo/config.toml uses -Z location-detail=none + -Z build-std)
 export RUSTC_BOOTSTRAP=1
+
+# Patch rollup's nightly-only build config for Rust 1.96 compatibility:
+# `panic_immediate_abort` cfg form was rejected in Rust 1.96 (now a real panic strategy
+# enabled via `panic = "immediate-abort"` in Cargo.toml). `optimize_for_size` still works.
+cat > rust/bindings_wasm/.cargo/config.toml <<'EOF'
+[build]
+rustflags = "-C opt-level=z -Z location-detail=none"
+
+[unstable]
+build-std = ["std", "core", "alloc", "panic_abort"]
+build-std-features = ["optimize_for_size"]
+EOF
+
 pnpm run build
 
 pnpm pack
