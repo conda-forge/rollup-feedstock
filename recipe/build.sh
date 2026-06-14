@@ -25,7 +25,7 @@ rm -f patches/@types+rimraf+*.patch
 rm -f patches/@vueuse+core+*.patch
 
 pnpm import
-pnpm install --ignore-scripts --config.bin-links=false
+pnpm install --ignore-scripts
 
 # allow stable rustc to accept nightly -Z flags
 # (rollup's rust/bindings_wasm/.cargo/config.toml uses -Z location-detail=none + -Z build-std)
@@ -42,6 +42,20 @@ rustflags = "-C opt-level=z -Z location-detail=none"
 build-std = ["std", "core", "alloc", "panic_abort"]
 build-std-features = ["optimize_for_size"]
 EOF
+
+# Override conda's $CARGO_HOME/config.toml rustflags (contains -C link-arg=-Wl,-rpath
+# which rust-lld rejects for wasm32). Setting RUSTFLAGS env replaces ALL config-derived
+# rustflags per cargo's precedence rules, suppressing the rpath leak.
+export RUSTFLAGS="-C opt-level=z -Z location-detail=none"
+
+# Bootstrap rollup (from $BUILD_PREFIX) resolves plugin packages relative to its own
+# install path. Add source tree's node_modules to NODE_PATH so typescript plugin
+# (and other build:js deps) resolve correctly.
+export NODE_PATH="$SRC_DIR/node_modules"
+
+# TypeScript compiler doesn't honor NODE_PATH — make rollup's type declarations
+# visible to tsc by symlinking the conda rollup package into the source node_modules.
+ln -sfn "$BUILD_PREFIX/lib/node_modules/rollup" "$SRC_DIR/node_modules/rollup"
 
 pnpm run build
 
