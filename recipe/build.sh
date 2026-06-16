@@ -27,25 +27,22 @@ rm -f patches/@vueuse+core+*.patch
 pnpm import
 pnpm install --ignore-scripts
 
-# allow stable rustc to accept nightly -Z flags
-# (rollup's rust/bindings_wasm/.cargo/config.toml uses -Z location-detail=none + -Z build-std)
+# Allow stable rustc to accept the nightly -Z flags we pass via RUSTFLAGS below.
 export RUSTC_BOOTSTRAP=1
 
-# Patch rollup's nightly-only build config for Rust 1.96 compatibility:
-# `panic_immediate_abort` cfg form was rejected in Rust 1.96 (now a real panic strategy
-# enabled via `panic = "immediate-abort"` in Cargo.toml). `optimize_for_size` still works.
+# Override rollup's rust/bindings_wasm/.cargo/config.toml: Rust 1.96 promoted
+# `panic_immediate_abort` from an unstable cfg to a real panic strategy and rejects
+# the old cfg form. Drop it; keep build-std + optimize_for_size for small wasm output.
+# (The [build] rustflags from upstream's config are superseded by RUSTFLAGS env below.)
 cat > rust/bindings_wasm/.cargo/config.toml <<'EOF'
-[build]
-rustflags = "-C opt-level=z -Z location-detail=none"
-
 [unstable]
 build-std = ["std", "core", "alloc", "panic_abort"]
 build-std-features = ["optimize_for_size"]
 EOF
 
-# Override conda's $CARGO_HOME/config.toml rustflags (contains -C link-arg=-Wl,-rpath
-# which rust-lld rejects for wasm32). Setting RUSTFLAGS env replaces ALL config-derived
-# rustflags per cargo's precedence rules, suppressing the rpath leak.
+# Override conda's $CARGO_HOME/config.toml rustflags (which inject -C link-arg=-Wl,-rpath
+# that rust-lld rejects for wasm32). RUSTFLAGS env has higher precedence than any
+# config-derived rustflags, fully replacing them for every rustc invocation.
 export RUSTFLAGS="-C opt-level=z -Z location-detail=none"
 
 # Bootstrap rollup (from $BUILD_PREFIX) resolves plugin packages relative to its own
