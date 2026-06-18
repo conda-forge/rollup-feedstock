@@ -1,5 +1,5 @@
 context:
-  version: "4.61.0"
+  version: "4.61.1"
 
 package:
   name: rollup
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/rollup/rollup/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: ca35dc7ca189b4da9bc81af7da9750b7cb6a01dce4cfde939bdeb425b2f89962
+  sha256: 50c05ba1abb48c96932da66f3069700ffce6785de6110056d9c514a693be41ad
 
 build:
   number: 0
@@ -19,6 +19,9 @@ requirements:
     - ${{ stdlib("c") }}
     - ${{ compiler('cxx') }}
     - ${{ compiler('rust') }}
+    - rust-std-wasm32-unknown-unknown
+    - rust-src
+    - rollup  # bootstrap: build:js needs rollup CLI (chicken-and-egg: dist/bin/rollup is the output)
     - cmake
     - make
     - nodejs
