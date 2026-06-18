@@ -19,6 +19,9 @@ requirements:
     - ${{ stdlib("c") }}
     - ${{ compiler('cxx') }}
     - ${{ compiler('rust') }}
+    - rust-std-wasm32-unknown-unknown
+    - rust-src
+    - rollup  # bootstrap: build:js needs rollup CLI (chicken-and-egg: dist/bin/rollup is the output)
     - cmake
     - make
     - nodejs
