@@ -1,17 +1,22 @@
 context:
-  version: "4.64.0"
+  version: "5.0.0"
+  revision: "0"
 
 package:
   name: rollup
   version: ${{ version }}
 
 source:
-  url: https://github.com/rollup/rollup/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: dd1ff25bb9fbd2eb1027279314560822abeb43066d5661c70c929a7921313a92
+  url: https://github.com/rollup/rollup/archive/refs/tags/v${{ version }}-${{ revision }}.tar.gz
+  sha256: 1f1b3060aed039f3645cf1d75e16e30d4e7d3a168740c945a880256fe4f459ba
 
 build:
   number: 0
   skip: win
+  script:
+    file: build.sh
+    env:
+      PKG_REVISION: ${{ revision }}
 
 requirements:
   build:
