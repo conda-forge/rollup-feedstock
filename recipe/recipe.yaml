@@ -16,7 +16,7 @@ build:
   script:
     file: build.sh
     env:
-      - PKG_REVISION: ${{ revision }}
+      PKG_REVISION: ${{ revision }}
 
 requirements:
   build:
